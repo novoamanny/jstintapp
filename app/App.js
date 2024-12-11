@@ -6,9 +6,10 @@ export default function App() {
   return (
     <View style={styles.container}>
       <LinearGradient
+        colors={['rgb(229, 27, 27)', '#B62025']}
         style={styles.layout}
       />
-      <Text>J's Tint and Car Audio</Text>
+      <Text style={styles.text}>J's Tint and Car Audio</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -16,6 +17,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   layout:{
+    position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
@@ -27,4 +29,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  text: {
+    color: '#fff'
+  }
 });
