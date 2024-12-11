@@ -2,15 +2,16 @@
   "expo": {
     "name": "app",
     "slug": "app",
+    "scheme": "app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./JsTint-Logo-NOVATEK.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./JsTint-Logo-NOVATEK.png",
+      "resizeMode": "stretch",
+      "backgroundColor": "#B62025"
     },
     "ios": {
       "supportsTablet": true
@@ -22,7 +23,11 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
-    }
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
