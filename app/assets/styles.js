@@ -17,6 +17,7 @@ const globalStyles = StyleSheet.create({
       backgroundColor: '#303030',
       alignItems: 'flex-start',
       justifyContent: 'flex-start',
+
     },
     text: {
       color: '#fff'

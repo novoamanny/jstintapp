@@ -2,8 +2,13 @@ import Swiper from 'react-native-swiper';
 import { StyleSheet, Text, View, Image, Pressable, ScrollView } from "react-native";
 import {useState, useCallback, useEffect} from 'react';
 import { Link, Tabs} from 'expo-router';
+
 import globalStyles from "../assets/styles";
 
+import { useEvent } from 'expo';
+import { useVideoPlayer, VideoView } from 'expo-video';
+const videoSource =
+require('../assets/videos/Ceramic-Coating.mp4');
 export default function Page() {
   const [images, setImages] = useState([
     require('../assets/images/about-hero-parallex2.jpeg'),
@@ -11,9 +16,18 @@ export default function Page() {
     require('../assets/images/Double-Tesla.jpg'),
     require('../assets/images/Tesla-Rear.jpg'),
   ]);
+
+
+  const player = useVideoPlayer(videoSource, player => {
+    player.loop = true;
+    player.play();
+  });
+
+  const { isPlaying } = useEvent(player, 'playingChange', { isPlaying: player.playing });
+
   return (
-    <View style={styles.main}>
-      <ScrollView contentContainerStyle={globalStyles.container}>
+    <ScrollView contentContainerStyle={styles.main}>
+      <ScrollView contentContainerStyle={''}>
         {/* <View style={styles.container}>
         <Image source={require('../assets/images/about-hero-parallex2.jpeg')} style={{ width: '100%', height: 280 }} />
         </View> */}
@@ -27,19 +41,20 @@ export default function Page() {
           ))}
         </Swiper>
         </View>
-        {/* <Link href="/about" asChild>
-          <Pressable>
-            <Text>About</Text>
-          </Pressable>
-        </Link>
-        <Link href="/services">services</Link>
-        <Link href="/contact">Contact</Link> */}
+          <Image source={require('../JsTint-Logo-NOVATEK.png')} style={{ width: '90%', height: 280 }} />
+      
+          <Text style={styles.copy}>Driven by a passion for automotive excellence, we are committed to enhancing your driving experience through precision craftsmanship, innovative solutions, and personalized service. Our mission is to inspire confidence and satisfaction in every customer, ensuring that your journey with us is nothing short of exceptional.</Text>
+          <VideoView style={styles.video} player={player} allowsFullscreen allowsPictureInPicture />
       </ScrollView>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  video: {
+    width: '100%',
+    height: 260,
+  },
   image: {
     width: '100%',
     height: 250,
@@ -63,7 +78,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: "center",
     minHeight: 250,
-    backgroundColor: '#fff'
+    justifyContent: 'center',
   },
   main: {
     flex: 1,
@@ -79,4 +94,8 @@ const styles = StyleSheet.create({
     fontSize: 36,
     color: "#38434D",
   },
+  copy: {
+    color: '#fff',
+    fontSize: 25,
+  }
 });
