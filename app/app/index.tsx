@@ -5,19 +5,30 @@ import { Link, Tabs} from 'expo-router';
 
 import globalStyles from "../assets/styles";
 import {LogoSection} from "../components/main-logo-section";
+import { OpacityScreen } from '../components/global';
 
 import { useEvent } from 'expo';
 import { useVideoPlayer, VideoView } from 'expo-video';
+const Headlight = require('../assets/images/Car-Headlight-on.jpg');
+const Map = require('../assets/images/map.png');
 // const videoSource = [
 // require('../assets/videos/Ceramic-Coating.mp4'),
 // require('../assets/videos/Car-Audio-Stage-5-3.mp4'),
 // ];
 export default function Page() {
   const [images, setImages] = useState([
-    require('../assets/images/about-hero-parallex2.jpeg'),
-    require('../assets/images/Cybertruck-cleo.jpg'),
-    require('../assets/images/Double-Tesla.jpg'),
+    require('../assets/images/black-tesla-three.jpg'),
+    require('../assets/images/Viper-2.jpeg'),
     require('../assets/images/Tesla-Rear.jpg'),
+    require('../assets/images/Double-Tesla.jpg'),
+  ]);
+  const [images2, setImages2] = useState([
+    require('../assets/images/tesla-logo.png'),
+    require('../assets/images/Lamborghini_Logo.png'),
+    require('../assets/images/Jaguar-Logo.png'),
+    require('../assets/images/Ford-Motor-Company-Logo.png'),
+    require('../assets/images/vw-logo.png'),
+    require('../assets/images/chevy-logo.png'),
   ]);
   const [isVisible, setIsVisible] = useState(false); // State to track button visibility
   const fadeAnim = useRef(new Animated.Value(0)).current; // Animation value for opacity
@@ -84,6 +95,21 @@ export default function Page() {
         <Image source={require('../assets/images/about-hero-parallex2.jpeg')} style={{ width: '100%', height: 280 }} />
         </View> */}
         <View style={styles.container}>
+        <OpacityScreen/>
+        <View style={{position: 'absolute', top: 0, left: 20, zIndex: 8}}>
+          <Text style={[styles.title, {color: '#fff', textAlign: 'left'}]}>Customize Your Ride, Unleash Your Style!</Text>
+        </View>
+        <View style={{position: 'absolute', top: 125, zIndex: 5, width: '100%', justifyContent: 'center', alignItems: 'center', alignContent: 'center', backgroundColor: 'rgba(0,0,0,0.6)'}}>
+          <Swiper showsPagination autoplay height={125} width={100}
+          dotStyle={styles.dot} // Style for inactive dots
+          activeDotStyle={styles.activeDot}
+          style={{justifyContent: 'center', alignContent: 'center', alignItems: 'center'}}
+          >
+            {images2.map((image, index) => (
+              <Image key={index} source={image} style={styles.image2} />
+            ))}
+          </Swiper>
+        </View>
           <Swiper showsPagination autoplay height={250}
               dotStyle={styles.dot} // Style for inactive dots
               activeDotStyle={styles.activeDot} // Style for active dots
@@ -96,6 +122,7 @@ export default function Page() {
         <LogoSection/>
           <Text style={styles.title}>Revolutionizing Your Ride, One Detail at a Time!</Text>
           <Text style={styles.copy}>Driven by a passion for automotive excellence, we are committed to enhancing your driving experience through precision craftsmanship, innovative solutions, and personalized service. Our mission is to inspire confidence and satisfaction in every customer, ensuring that your journey with us is nothing short of exceptional.</Text>
+          <Image source={Headlight} style={styles.image} />
           {/* <VideoView style={styles.video} player={playerTwo} allowsFullscreen allowsPictureInPicture /> */}
           <Text style={styles.title}>Preserve Your Ride, Unleash Its Potential: The Power of Paint Protection Film</Text>
           <Text style={styles.copy}>Transform the way you protect your vehicle with our industry-leading Paint Protection Film (PPF). Engineered to shield your car's paint from the rigors of daily driving, our PPF offers unparalleled protection without compromising on style. Crafted from high-quality materials, our nearly invisible film is designed to keep your car looking newer for longer.</Text>
@@ -107,7 +134,8 @@ export default function Page() {
           <Text style={styles.copy}><Text style={styles.highlight}>Durable and Reliable:</Text> Engineered with cutting-edge technology, our PPF is designed to withstand daily driving and harsh conditions. It provides long-lasting protection, ensuring your vehicle stays looking newer for longer.</Text>
           <Text style={styles.copy}><Text style={styles.highlight}>Easy Maintenance:</Text> PPF makes cleaning easier by repelling dirt, water, and contaminants. Say goodbye to frequent waxing and polishing—maintaining your car's shine is effortless with our protective film.</Text>
           <Text style={styles.copy}><Text style={styles.highlight}>Tailored Solutions:</Text> We offer custom-fit PPF solutions for a wide range of vehicles, ensuring precise coverage and optimal protection. Whether you drive a sedan, SUV, or sports car, we have the right solution for you.</Text>
-      <View style={{paddingVertical: 70}}></View>
+          <Image source={Map} style={styles.image} />
+      <View style={{paddingVertical: 45}}></View>
     </ScrollView>
   );
 }
@@ -139,12 +167,18 @@ const styles = StyleSheet.create({
     height: 250,
     resizeMode: 'cover',
   },
+  image2: {
+    width: '100%',
+    height: 120,
+    resizeMode: 'contain',
+  },
   dot: {
     backgroundColor: '#90A4AE', // Color for inactive dots
     width: 10,
     height: 10,
     borderRadius: 5,
     marginHorizontal: 5,
+    display: 'none'
   },
   activeDot: {
     backgroundColor: '#B62025', // Color for active dot
@@ -152,6 +186,7 @@ const styles = StyleSheet.create({
     height: 12,
     borderRadius: 6,
     marginHorizontal: 5,
+    display: 'none'
   },
   container: {
     width: '100%',

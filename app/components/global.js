@@ -4,7 +4,7 @@ import { useEvent } from 'expo';
 import { useVideoPlayer, VideoView } from 'expo-video';
 
 
-export const FloatCTA = () =>{
+export const MainCTA = () =>{
 
 
     const handleCall = () => {
@@ -21,7 +21,25 @@ export const FloatCTA = () =>{
     );
 }
 
+export const OpacityScreen = () =>{
+    return(
+        <View style={styles.opacityScreen}>
+
+        </View>
+    )
+}
+
 const styles = StyleSheet.create({
+    opacityScreen:{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 5,
+        backgroundColor: '#000',
+        opacity: 0.45
+    },
     container: {
         width: '100%',
         height: 'auto'

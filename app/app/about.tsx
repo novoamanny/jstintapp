@@ -4,6 +4,7 @@ import Swiper from 'react-native-swiper';
 import { Link } from 'expo-router';
 import Hero from '../components/hero';
 import { LogoSection } from '../components/main-logo-section';
+import { OpacityScreen } from '../components/global';
 
 // const videoSource = [
 //   require('../assets/videos/Ceramic-Coating.mp4'),
@@ -13,15 +14,16 @@ import { LogoSection } from '../components/main-logo-section';
 
 export default function About() {
   const [images, setImages] = useState([
+    require('../assets/images/cars-portrait.jpg'),
     require('../assets/images/Cybertruck-hero-4.jpg'),
     require('../assets/images/Cybertruck-cleo.jpg'),
-    require('../assets/images/Double-Tesla.jpg'),
-    require('../assets/images/Tesla-Rear.jpg'),
+    require('../assets/images/chevy-parallex.jpeg'),
   ]);
   return (
     <ScrollView>
       {/* <Hero videoSource={videoSource[0]}/> */}
       <View style={styles.container}>
+        <OpacityScreen/>
           <Swiper showsPagination autoplay height={250}
               dotStyle={styles.dot} // Style for inactive dots
               activeDotStyle={styles.activeDot} // Style for active dots
@@ -54,6 +56,7 @@ const styles = StyleSheet.create({
     height: 10,
     borderRadius: 5,
     marginHorizontal: 5,
+    display: 'none'
   },
   activeDot: {
     backgroundColor: '#B62025', // Color for active dot
@@ -61,6 +64,7 @@ const styles = StyleSheet.create({
     height: 12,
     borderRadius: 6,
     marginHorizontal: 5,
+    display: 'none'
   },
   container: {
       width: '100%',

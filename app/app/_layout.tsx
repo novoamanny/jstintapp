@@ -4,7 +4,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Drawer } from 'expo-router/drawer';
 import { Link, Tabs } from 'expo-router';
 
-import { FloatCTA } from '../components/global';
+import { MainCTA } from '../components/global';
 
 
 export default function About() {
@@ -97,7 +97,7 @@ export default function About() {
             </Drawer>
         </GestureHandlerRootView>
         <Animated.View style={[ styles.callButtonContainer, { backgroundColor }]}>
-          <FloatCTA/>
+          <MainCTA/>
         </Animated.View>
         {/* <Tabs /> */}
     </>
