@@ -7,8 +7,10 @@ import globalStyles from "../assets/styles";
 
 import { useEvent } from 'expo';
 import { useVideoPlayer, VideoView } from 'expo-video';
-const videoSource =
-require('../assets/videos/Ceramic-Coating.mp4');
+const videoSource = [
+require('../assets/videos/Ceramic-Coating.mp4'),
+require('../assets/videos/Car-Audio-Stage-5-3.mp4'),
+];
 export default function Page() {
   const [images, setImages] = useState([
     require('../assets/images/about-hero-parallex2.jpeg'),
@@ -18,12 +20,16 @@ export default function Page() {
   ]);
 
 
-  const player = useVideoPlayer(videoSource, player => {
+  const playerOne = useVideoPlayer(videoSource[0], player => {
+    player.loop = true;
+    player.play();
+  });
+  const playerTwo = useVideoPlayer(videoSource[1], player => {
     player.loop = true;
     player.play();
   });
 
-  const { isPlaying } = useEvent(player, 'playingChange', { isPlaying: player.playing });
+  const { isPlaying } = useEvent(playerOne, 'playingChange', { isPlaying: playerOne.playing });
 
   return (
     <ScrollView contentContainerStyle={styles.main}>
@@ -32,7 +38,12 @@ export default function Page() {
         <Image source={require('../assets/images/about-hero-parallex2.jpeg')} style={{ width: '100%', height: 280 }} />
         </View> */}
         <View style={styles.container}>
-        <Swiper showsPagination autoplay height={250}
+        <VideoView style={styles.video} player={playerOne} allowsFullscreen allowsPictureInPicture />
+        </View>
+          <Image source={require('../JsTint-Logo-NOVATEK.png')} style={{ width: '90%', height: 280 }} />
+      
+          <Text style={styles.copy}>Driven by a passion for automotive excellence, we are committed to enhancing your driving experience through precision craftsmanship, innovative solutions, and personalized service. Our mission is to inspire confidence and satisfaction in every customer, ensuring that your journey with us is nothing short of exceptional.</Text>
+          <Swiper showsPagination autoplay height={250}
               dotStyle={styles.dot} // Style for inactive dots
               activeDotStyle={styles.activeDot} // Style for active dots
         >
@@ -40,11 +51,9 @@ export default function Page() {
             <Image key={index} source={image} style={styles.image} />
           ))}
         </Swiper>
-        </View>
-          <Image source={require('../JsTint-Logo-NOVATEK.png')} style={{ width: '90%', height: 280 }} />
-      
           <Text style={styles.copy}>Driven by a passion for automotive excellence, we are committed to enhancing your driving experience through precision craftsmanship, innovative solutions, and personalized service. Our mission is to inspire confidence and satisfaction in every customer, ensuring that your journey with us is nothing short of exceptional.</Text>
-          <VideoView style={styles.video} player={player} allowsFullscreen allowsPictureInPicture />
+          <VideoView style={styles.video} player={playerTwo} allowsFullscreen allowsPictureInPicture />
+          <Text style={styles.copy}>Driven by a passion for automotive excellence, we are committed to enhancing your driving experience through precision craftsmanship, innovative solutions, and personalized service. Our mission is to inspire confidence and satisfaction in every customer, ensuring that your journey with us is nothing short of exceptional.</Text>
       </ScrollView>
     </ScrollView>
   );
@@ -53,7 +62,7 @@ export default function Page() {
 const styles = StyleSheet.create({
   video: {
     width: '100%',
-    height: 260,
+    height: 230,
   },
   image: {
     width: '100%',
@@ -95,7 +104,11 @@ const styles = StyleSheet.create({
     color: "#38434D",
   },
   copy: {
-    color: '#fff',
-    fontSize: 25,
+    // color: '#fff',
+    fontSize: 21,
+    paddingHorizontal: 25,
+    paddingVertical: 35,
+    // backgroundColor: '#303030',
+    lineHeight: 36
   }
 });
