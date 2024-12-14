@@ -5,10 +5,10 @@ import { Link } from 'expo-router';
 import Hero from '../components/hero';
 import { LogoSection } from '../components/main-logo-section';
 
-const videoSource = [
-  require('../assets/videos/Ceramic-Coating.mp4'),
-  require('../assets/videos/Car-Audio-Stage-5-3.mp4'),
-];
+// const videoSource = [
+//   require('../assets/videos/Ceramic-Coating.mp4'),
+//   require('../assets/videos/Car-Audio-Stage-5-3.mp4'),
+// ];
 
 
 export default function About() {
