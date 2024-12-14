@@ -79,8 +79,7 @@ export default function Page() {
   // onScroll={handleScroll} scrollEventThrottle={16}
 
   return (
-    <ScrollView contentContainerStyle={styles.main} >
-      <ScrollView contentContainerStyle={''}  >
+    <ScrollView >
         {/* <View style={styles.container}>
         <Image source={require('../assets/images/about-hero-parallex2.jpeg')} style={{ width: '100%', height: 280 }} />
         </View> */}
@@ -108,8 +107,7 @@ export default function Page() {
           <Text style={styles.copy}><Text style={styles.highlight}>Durable and Reliable:</Text> Engineered with cutting-edge technology, our PPF is designed to withstand daily driving and harsh conditions. It provides long-lasting protection, ensuring your vehicle stays looking newer for longer.</Text>
           <Text style={styles.copy}><Text style={styles.highlight}>Easy Maintenance:</Text> PPF makes cleaning easier by repelling dirt, water, and contaminants. Say goodbye to frequent waxing and polishing—maintaining your car's shine is effortless with our protective film.</Text>
           <Text style={styles.copy}><Text style={styles.highlight}>Tailored Solutions:</Text> We offer custom-fit PPF solutions for a wide range of vehicles, ensuring precise coverage and optimal protection. Whether you drive a sedan, SUV, or sports car, we have the right solution for you.</Text>
-          <View style={{paddingVertical: 70}}></View>
-      </ScrollView>
+      <View style={{paddingVertical: 70}}></View>
     </ScrollView>
   );
 }
@@ -160,12 +158,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     minHeight: 250,
     justifyContent: 'center',
-  },
-  main: {
-    flex: 1,
-    justifyContent: "center",
-    width: '100%',
-    marginHorizontal: "auto",
   },
   title: {
     fontSize: 36,
