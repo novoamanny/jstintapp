@@ -1,6 +1,6 @@
 import Swiper from 'react-native-swiper';
-import { StyleSheet, Text, View, Image, Pressable, ScrollView } from "react-native";
-import {useState, useCallback, useEffect, Fragment} from 'react';
+import { StyleSheet, Text, View, Image, Pressable, ScrollView, Animated } from "react-native";
+import {useState, useCallback, useEffect, Fragment, useRef} from 'react';
 import { Link, Tabs} from 'expo-router';
 
 import globalStyles from "../assets/styles";
@@ -20,6 +20,10 @@ export default function Page() {
     require('../assets/images/Double-Tesla.jpg'),
     require('../assets/images/Tesla-Rear.jpg'),
   ]);
+  const [isVisible, setIsVisible] = useState(false); // State to track button visibility
+  const fadeAnim = useRef(new Animated.Value(0)).current; // Animation value for opacity
+  const glowAnim = useRef(new Animated.Value(0)).current;
+
 
 
   const playerOne = useVideoPlayer(videoSource[0], player => {
@@ -33,9 +37,78 @@ export default function Page() {
 
   const { isPlaying } = useEvent(playerOne, 'playingChange', { isPlaying: playerOne.playing });
 
+
+
+
+  useEffect(() => {
+    // Start the glowing animation
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(glowAnim, {
+          toValue: 1,
+          duration: 1000, // Time to brighten
+          useNativeDriver: false,
+        }),
+        Animated.timing(glowAnim, {
+          toValue: 0,
+          duration: 1000, // Time to dim
+          useNativeDriver: false,
+        }),
+      ])
+    ).start();
+  }, [glowAnim]);
+
+  // Interpolate the background color
+  const backgroundColor = glowAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['#8B0000', '#B62025'], // From dark red to bright orange
+  });
+
+
+
+
+  // Show the button with animation
+  const showButton = () => {
+    if (!isVisible) {
+      console.log('showButton triggered');
+      Animated.timing(fadeAnim, {
+        toValue: 1, // Fully visible
+        duration: 300, // Animation duration in milliseconds
+        useNativeDriver: true,
+      }).start();
+      setIsVisible(true);
+    }
+  };
+
+  // Hide the button with animation
+  const hideButton = () => {
+    if (isVisible) {
+      Animated.timing(fadeAnim, {
+        toValue: 0, // Fully hidden
+        duration: 300, // Animation duration in milliseconds
+        useNativeDriver: true,
+      }).start(() => setIsVisible(false)); // Update visibility state after animation
+    }
+  };
+
+  // Handle scroll to toggle button visibility
+  const handleScroll = (event) => {
+    const yOffset = event.nativeEvent.contentOffset.y;
+    if (yOffset > 100) {
+      showButton(); // Show button when scrolled down
+    } else {
+      hideButton(); // Hide button when at the top
+    }
+
+    console.log(yOffset)
+  };
+
+
+  // onScroll={handleScroll} scrollEventThrottle={16}
+
   return (
-    <ScrollView contentContainerStyle={styles.main}>
-      <ScrollView contentContainerStyle={''}>
+    <ScrollView contentContainerStyle={styles.main} >
+      <ScrollView contentContainerStyle={''}  >
         {/* <View style={styles.container}>
         <Image source={require('../assets/images/about-hero-parallex2.jpeg')} style={{ width: '100%', height: 280 }} />
         </View> */}
@@ -61,12 +134,33 @@ export default function Page() {
           <VideoView style={styles.video} player={playerOne} allowsFullscreen allowsPictureInPicture />
           <Text style={styles.copy}>Driven by a passion for automotive excellence, we are committed to enhancing your driving experience through precision craftsmanship, innovative solutions, and personalized service. Our mission is to inspire confidence and satisfaction in every customer, ensuring that your journey with us is nothing short of exceptional.</Text>
       </ScrollView>
+      {/* {isVisible && ( */}
+      <Animated.View style={[ styles.callButtonContainer, { backgroundColor }]}>
       <FloatCTA/>
+      </Animated.View>
+      {/* )} */}
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  callButtonContainer: {
+    position: 'absolute',
+    bottom: 0, // Distance from the bottom of the screen
+    // backgroundColor: '#B62025', // Customize the button color
+    // padding: 15,
+    // borderRadius: 5, // Makes the button circular
+    // shadowColor: '#000',
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowOpacity: 0.7,
+    // shadowRadius: 5,
+    // elevation: 5, // Adds shadow for Android
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+
+},
   video: {
     width: '100%',
     height: 230,
