@@ -7,6 +7,7 @@ import Swiper from 'react-native-swiper';
 
 // M A I N   L O G O
 const MAIN_LOGO = require('../JsTint-Logo-NOVATEK.png');
+const Map = require('../assets/images/map.png');
 
 // S P A C E
 export const Space = ({int}) =>{
@@ -67,4 +68,8 @@ export const Carousel = ({images, height, width, style}) =>{
             ))}
         </Swiper>
     )
+}
+// G O O G L E   M A P
+export const GoogleMap = () =>{
+    return <Image source={Map} style={Styles.image} />
 }

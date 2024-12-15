@@ -55,11 +55,52 @@ export const Styles = StyleSheet.create({
     },
     textRight: {
         textAlign: 'right'
+    },
+    title: {
+        fontSize: 36,
+        fontWeight: "bold",
+        textAlign: 'center',
+        marginHorizontal: 10,
+        lineHeight: 48,
+        marginVertical: 20
+    },
+    subtitle: {
+        fontSize: 36,
+        color: "#38434D",
+    },
+    copy: {
+        // color: '#fff',
+        fontSize: 21,
+        paddingHorizontal: 25,
+        paddingVertical: 25,
+        // backgroundColor: '#303030',
+        lineHeight: 36
+    },
+    highlight:{
+        color: '#B62025',
+        fontWeight: 'bold'
     }
 });
 
 // Main CTA Styles
 export const MainCTAStyles = StyleSheet.create({
+    callButtonContainer: {
+        position: 'absolute',
+        bottom: 0, // Distance from the bottom of the screen
+        // backgroundColor: '#B62025', // Customize the button color
+        // padding: 15,
+        // borderRadius: 5, // Makes the button circular
+        // shadowColor: '#000',
+        // shadowOffset: { width: 0, height: 2 },
+        // shadowOpacity: 0.7,
+        // shadowRadius: 5,
+        // elevation: 5, // Adds shadow for Android
+        justifyContent: 'center',
+        alignContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+    
+    },
     callButton: {
         // backgroundColor: '#B62025', // Customize the button color
         padding: 15,

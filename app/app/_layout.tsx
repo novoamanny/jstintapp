@@ -5,7 +5,7 @@ import { Drawer } from 'expo-router/drawer';
 import { Link, Tabs } from 'expo-router';
 
 import { MainCTA } from '../components/global';
-import { COLORS } from '../assets/styles';
+import { COLORS, MainCTAStyles } from '../assets/styles';
 
 
 export default function About() {
@@ -34,6 +34,7 @@ export default function About() {
     inputRange: [0, 1],
     outputRange: ['#8B0000', '#B62025'], // From dark red to bright orange
   });
+
   return (
     <>
         <GestureHandlerRootView style={{ flex: 1 }}>
@@ -98,31 +99,10 @@ export default function About() {
               />
             </Drawer>
         </GestureHandlerRootView>
-        <Animated.View style={[ styles.callButtonContainer, { backgroundColor }]}>
+        <Animated.View style={[ MainCTAStyles.callButtonContainer, { backgroundColor }]}>
           <MainCTA/>
         </Animated.View>
         {/* <Tabs /> */}
     </>
   );
 }
-
-
-const styles = StyleSheet.create({
-  callButtonContainer: {
-    position: 'absolute',
-    bottom: 0, // Distance from the bottom of the screen
-    // backgroundColor: '#B62025', // Customize the button color
-    // padding: 15,
-    // borderRadius: 5, // Makes the button circular
-    // shadowColor: '#000',
-    // shadowOffset: { width: 0, height: 2 },
-    // shadowOpacity: 0.7,
-    // shadowRadius: 5,
-    // elevation: 5, // Adds shadow for Android
-    justifyContent: 'center',
-    alignContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-
-},
-})
