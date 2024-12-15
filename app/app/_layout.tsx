@@ -5,6 +5,7 @@ import { Drawer } from 'expo-router/drawer';
 import { Link, Tabs } from 'expo-router';
 
 import { MainCTA } from '../components/global';
+import { COLORS } from '../assets/styles';
 
 
 export default function About() {
@@ -37,6 +38,7 @@ export default function About() {
     <>
         <GestureHandlerRootView style={{ flex: 1 }}>
             <Drawer>
+{/* Homepage Options */}
               <Drawer.Screen
                 name="index" // This is the name of the page and must match the url from root
                 options={{

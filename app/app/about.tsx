@@ -2,9 +2,7 @@ import { View, ScrollView, Text, StyleSheet, Image } from 'react-native';
 import {useState, useCallback, useEffect, Fragment} from 'react';
 import Swiper from 'react-native-swiper';
 import { Link } from 'expo-router';
-import Hero from '../components/hero';
-import { LogoSection } from '../components/main-logo-section';
-import { OpacityScreen } from '../components/global';
+import { OpacityScreen, LogoSection, VideoSection } from '../components/global';
 
 // const videoSource = [
 //   require('../assets/videos/Ceramic-Coating.mp4'),
@@ -21,7 +19,7 @@ export default function About() {
   ]);
   return (
     <ScrollView>
-      {/* <Hero videoSource={videoSource[0]}/> */}
+      {/* <VideoSection videoSource={videoSource[0]}/> */}
       <View style={styles.container}>
         <OpacityScreen/>
           <Swiper showsPagination autoplay height={250}
@@ -38,6 +36,7 @@ export default function About() {
         <Text style={styles.title}>Crafting Automotive Excellence!</Text>
         <Text style={styles.copy}>At J's Tint, we're more than just a car shop – we're your partners in automotive perfection. Specializing in Paint Protection Film (PPF) and Car Tint, we offer a suite of services to customize and safeguard your vehicle. From flawless car wraps to cutting-edge lighting and accessories installation, we're here to elevate your driving experience. Trust the experts at J's Tint to turn your car into a masterpiece.</Text>
       </View>
+      <View style={{paddingVertical: 45}}></View>
       {/* <Text style={styles.copy}>Driven by a passion for automotive excellence, we are committed to enhancing your driving experience through precision craftsmanship, innovative solutions, and personalized service. Our mission is to inspire confidence and satisfaction in every customer, ensuring that your journey with us is nothing short of exceptional.</Text> */}
     </ScrollView>
   );
