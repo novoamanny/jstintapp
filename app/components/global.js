@@ -4,6 +4,7 @@ import { useEvent } from 'expo';
 import { useVideoPlayer, VideoView } from 'expo-video';
 import { Styles, MainCTAStyles, SwipperStyles } from '../assets/styles';
 import Swiper from 'react-native-swiper';
+import { handleCall } from "../assets/js/main";
 
 // M A I N   L O G O
 const MAIN_LOGO = require('../JsTint-Logo-NOVATEK.png');
@@ -13,14 +14,22 @@ const Map = require('../assets/images/map.png');
 export const Space = ({int}) =>{
     return <View style={{paddingVertical: int}}></View>
 }
+// S E C T I O N
+export const Section = ({title, copy}) =>{
+    return(
+        <View style={Styles.container}>
+            <Text style={Styles.title}>{title}</Text>
+            <Text style={Styles.copy}>{copy}</Text>
+        </View>
+    );
+}
 // V I D E O   S E C T I O N
 export const VideoSection = ({videoSource}) =>{
-
     const player = useVideoPlayer(videoSource, player => {
         player.loop = true;
         player.play();
-      });
-      const { isPlaying } = useEvent(player, 'playingChange', { isPlaying: player.playing });
+    });
+    const { isPlaying } = useEvent(player, 'playingChange', { isPlaying: player.playing });
     return(
         <View style={Styles.container}>
             <VideoView style={Styles.video} player={player} allowsFullscreen allowsPictureInPicture />
@@ -29,12 +38,6 @@ export const VideoSection = ({videoSource}) =>{
 }
 // M A I N   C T A
 export const MainCTA = () =>{
-    const handleCall = () => {
-        const phoneNumber = 'tel:+12143917077'; // Replace with the desired phone number
-        Linking.openURL(phoneNumber).catch((err) => {
-          console.error('Failed to make a call:', err);
-        });
-      };
     return(
         <TouchableOpacity style={MainCTAStyles.callButton} onPress={handleCall}>
         <Text style={MainCTAStyles.buttonText}>Get A Quote!</Text>
